@@ -55,10 +55,13 @@ class AppHome extends StatelessWidget {
                   new FlutterPwValidator(
                     controller: controller,
                     minLength: 8,
+                    activeIcon: Icons.check,
+                    inactiveIcon: Icons.clear,
                     uppercaseCharCount: 2,
                     numericCharCount: 3,
+                    normalCharCount: 2,
                     specialCharCount: 1,
-                    normalCharCount: 3,
+                    regExpSpecialChar: r"[@#$%^&'*:;()+_=.,-]",
                     width: 400,
                     height: 150,
                     onSuccess: () {

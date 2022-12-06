@@ -8,8 +8,8 @@ class Validator {
 
   /// Checks if password has at least normal char letter matches
   bool hasMinNormalChar(String password, int normalCount) {
-    String pattern = '^(.*?[A-Z]){' + normalCount.toString() + ',}';
-    return password.toUpperCase().contains(new RegExp(pattern));
+    String pattern = '^(.*?[a-z]){' + normalCount.toString() + ',}';
+    return password.contains(new RegExp(pattern));
   }
 
   /// Checks if password has at least uppercaseCount uppercase letter matches
@@ -25,9 +25,8 @@ class Validator {
   }
 
   //Checks if password has at least specialCount special character matches
-  bool hasMinSpecialChar(String password, int specialCount) {
-    String pattern =
-        r"^(.*?[$&+,\:;/=?@#|'<>.^*()_%!-]){" + specialCount.toString() + ",}";
+  bool hasMinSpecialChar(String password, int specialCount, { String? strPattern = r"^(.*?[$&+,\:;/=?@#|'<>.^*()_%!-])"}) {
+    String pattern = r"^(.*?[$&+,\:;/=?@#|'<>.^*()_%!-]){" + specialCount.toString() + ",}";
     return password.contains(new RegExp(pattern));
   }
 }

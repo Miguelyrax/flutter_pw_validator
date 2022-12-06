@@ -6,30 +6,36 @@ class ValidationTextWidget extends StatelessWidget {
   final Color color;
   final String text;
   final int? value;
+  final Color? textColor;
+  final IconData activeIcon;
+  final TextStyle? textStyle;
 
   ValidationTextWidget(
-      {required this.color, required this.text, required this.value});
+      {required this.color, required this.text, required this.value, this.textColor, required this.activeIcon,this.textStyle});
 
   @override
   Widget build(BuildContext context) {
-    return new Row(
-      children: [
-        new Container(
-          width: SizeConfig.width! * 0.03,
-          height: SizeConfig.width! * 0.03,
-          child: new CircleAvatar(
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 11),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircleAvatar(
+            radius: 10.0,
+            child: Icon(
+              activeIcon, color: Colors.black, size: 14,),
             backgroundColor: color,
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(left: SizeConfig.width! * 0.03),
-          child: new Text(
-            text.replaceFirst("-", value.toString()),
-            style:
-                new TextStyle(fontSize: SizeConfig.width! * 0.04, color: color),
-          ),
-        )
-      ],
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              text.replaceFirst("-", value.toString()),
+              style:
+                  textStyle??TextStyle(fontSize: SizeConfig.width! * 0.04, color: textColor),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
